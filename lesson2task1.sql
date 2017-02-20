@@ -2,7 +2,7 @@ use [Store]
 go
 
 
-select * from [dbo].[OrdersGoods]
+--select * from [dbo].[OrdersGoods]
 
 --select [name] from [dbo].[Goods] where [price] > (select avg([price]) from [dbo].[Goods])
 
@@ -13,5 +13,13 @@ select * from [dbo].[OrdersGoods]
 select * from dbo.OrdersGoods as e
 	inner join dbo.Orders as p
 	on e.orderID = p.id 
-	 where p.id = 2
+--	 where p.id = 2
 	
+select * from dbo.OrdersGoods as e
+	left outer join dbo.Orders as p
+	on e.orderID = p.id 
+--	 where p.id = 2
+
+select * from dbo.OrdersGoods as e
+	right outer join dbo.Orders as p
+	on e.orderID = p.id 
