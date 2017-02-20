@@ -1,33 +1,17 @@
 use [Store]
 go
 
---INSERT
---insert into [dbo].[Goods] 
---	([name], [price], [categoryID]) 
---	values ('Good',90,3);
 
---DELETE
---delete from [dbo].[Goods] where id = 0
+select * from [dbo].[OrdersGoods]
 
---UPDATE
---declare @i int = (select top 1 [id] from [dbo].[Goods] group by [id] order by [id])
---declare @start int = @i 
+--select [name] from [dbo].[Goods] where [price] > (select avg([price]) from [dbo].[Goods])
 
---while @i < ((select count([name]) from [dbo].[Goods]) + @start)
---begin
---	update [dbo].[Goods] set [name] = ('Good # ' + cast (@i as nvarchar(2))) where id = @i
---	set @i = @i + 1
---end
+--select [name] from [dbo].[Goods] where [price] > (select max([price]) from [dbo].[Goods] group by categoryID having categoryID = 2)
 
---select * from [dbo].[Goods]
+--select [name], (select max(categoryID) from [dbo].Goods) [maxcategoryID] from [dbo].[Goods] 
 
-update [dbo].[Goods]
-	set [price] = [price] * 2
-	where [categoryID] in
-	 (
-		select [id] 
-			from [dbo].[Categories] where [name] = 'ups' or [id] > 3
-	 )
-
-
-select * from [dbo].[Goods]
+select * from dbo.OrdersGoods as e
+	inner join dbo.Orders as p
+	on e.orderID = p.id 
+	 where p.id = 2
+	
