@@ -11,7 +11,7 @@ go
 --select [name], (select max(categoryID) from [dbo].Goods) [maxcategoryID] from [dbo].[Goods] 
 
 select * from dbo.Goods as p
-	full outer join dbo.OrdersGoods as o
+	inner join dbo.OrdersGoods as o
 	on p.id = o.goodID
 	--where o.orderID is null 
 --	 where p.id = 2
