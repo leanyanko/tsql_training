@@ -1,0 +1,22 @@
+use myData
+go
+
+CREATE TABLE dbo.keys
+(
+	ID int NOT NULL,
+	name varchar(MAX),
+	email varchar(MAX),
+	CONSTRAINT PK_T_ID PRIMARY KEY CLUSTERED (ID)
+)
+
+CREATE TABLE dbo.fk
+(
+	TID int NOT NULL,
+	name varchar(max),
+	email varchar(MAX)
+	CONSTRAINT PK_T_TID PRIMARY KEY NONCLUSTERED(TID),
+	CONSTRAINT FK_T_TID FOREIGN KEY (TID)
+		REFERENCES dbo.keys(ID)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+);
